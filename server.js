@@ -10,7 +10,7 @@ const authController = require('./controllers/auth.js');
 const foodsController = require('./controllers/foods.js');
 const isSignedIn = require('./middleware/is-signed-in.js');
 const passUserToView = require('./middleware/pass-user-to-view.js');
-const authController = require('./controllers/auth.js');
+
 
 const port = process.env.PORT ? process.env.PORT : '3000';
 
@@ -45,21 +45,22 @@ app.get('/vip-lounge', (req, res) => {
   }
 });
 
-router.get('/', (req, res) => {
+/*router.get('/', (req, res) => {
   const userId = req.session.user._id;
   User.findById(userId, (err, user) => {
     if (err) return res.redirect('/');
     res.render('foods/index.ejs', { pantry: user.pantry });
   });
 });
-router.get('/:itemId/edit', (req, res) => {
+*/
+/*router.get('/:itemId/edit', (req, res) => {
   const userId = req.session.user._id;
   User.findById(userId, (err, user) => {
     const item = user.pantry.id(req.params.itemId);
     res.render('foods/edit.ejs', { item });
   });
-});
-router.post('/:itemId', (req, res) => {
+});*/
+/*router.post('/:itemId', (req, res) => {
   const userId = req.session.user._id;
   User.findById(userId, (err, user) => {
     const item = user.pantry.id(req.params.itemId);
@@ -70,6 +71,7 @@ router.post('/:itemId', (req, res) => {
     });
   });
 });
+*/
 
 app.use('/auth', authController);
 app.use('/users/:userId/foods',foodsController);
