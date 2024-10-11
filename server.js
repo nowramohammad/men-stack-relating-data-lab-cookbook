@@ -31,6 +31,12 @@ app.use(
   })
 );
 
+app.use(passUserToView)
+app.use('/auth', authController);
+app.use(isSignedIn);
+app.use('/users/:userId/foods',foodsController);
+
+
 app.get('/', (req, res) => {
   res.render('index.ejs', {
     user: req.session.user,
@@ -44,6 +50,7 @@ app.get('/vip-lounge', (req, res) => {
     res.send('Sorry, no guests allowed.');
   }
 });
+
 
 /*router.get('/', (req, res) => {
   const userId = req.session.user._id;
@@ -73,14 +80,9 @@ app.get('/vip-lounge', (req, res) => {
 });
 */
 
-app.use('/auth', authController);
-app.use('/users/:userId/foods',foodsController);
-app.use(passUserToView)
-app.use('/auth', authController);
-app.use(isSignedIn);
-app.use('/users/:userId/foods',foodsController);
 
-app.use('/auth', authController);
+
+
 
 
 

@@ -1,6 +1,5 @@
 const express = require('express');
 const router = express.Router();
-
 const User = require('../models/user.js');
 
 router.get('/', (req, res) => {
@@ -23,6 +22,13 @@ try {
     res.redirect("/");
 }
 });*/
+router.get('/', (req, res) => {
+  const userId = req.session.user._id;
+  User.findById(userId, (err, user) => {
+    if (err) return res.redirect('/');
+    res.render('foods/index.ejs', { pantry: user.pantry });
+  });
+});
 
 router.post('/', (req, res) => {
   const userId = req.session.user._id;
@@ -41,7 +47,21 @@ router.get("/:foodId/edit", async (req, res) => {
     const food = currentUser.foods.id(req.params.foodId);
     res.render("foods/edit.ejs", { food });
   });
+  router.post('/:itemId', (req, res) => {
+    const userId = req.session.user._id;
+    User.findById(userId, (err, user) => {
+      if (err) return res.redirect('/');
+      const item = user.pantry.id(req.params.itemId);
+      item.set(req.body);
+      user.save(err => {
+        if (err) return res.redirect('/');
+        res.redirect(`/users/${userId}/foods`);
+      });
+    });
+  });
 
+
+  
 router.delete('/:itemId', (req,res) => {
   const userId = req.session.user._id;
   User.findById(userId, (err, user) => {
