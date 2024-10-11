@@ -2,9 +2,9 @@ const express = require('express');
 const router = express.Router();
 const User = require('../models/user.js');
 
-router.get('/', (req, res) => {
+/*router.get('/', (req, res) => {
     res.render('foods/index.ejs')
-  });
+  });*/
   
 router.get('/', (req, res) => {
     res.render('foods/new.ejs')
@@ -61,7 +61,7 @@ router.get("/:foodId/edit", async (req, res) => {
   });
 
 
-  
+
 router.delete('/:itemId', (req,res) => {
   const userId = req.session.user._id;
   User.findById(userId, (err, user) => {
