@@ -31,6 +31,8 @@ app.use(
   })
 );
 
+
+
 app.use(passUserToView)
 app.use('/auth', authController);
 app.use(isSignedIn);
@@ -80,7 +82,14 @@ app.get('/', (req, res) => {
 });
 */
 
-
+app.get('/foods/:id', async (req, res) => {
+  try {
+      const food = await getFoodById(req.params.id); // Fetch recipe asynchronously
+      res.render('foods/show', { food }, { async: true });
+  } catch (error) {
+      res.status(500).send('Error occurred');
+  }
+});
 
 
 
