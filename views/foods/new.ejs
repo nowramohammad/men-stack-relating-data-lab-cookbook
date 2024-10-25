@@ -2,15 +2,17 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Add a New Food</title>
+    <title>Add New Food Item</title>
 </head>
 <body>
     <%- include('../partials/_navbar.ejs') %>
+    <h1>Add New Item</h1>
     <form action="/users/<%= user._id %>/foods" method="POST">
-        <input type="text" name="itemName" placeholder="Item Name" required>
-        <input type="number" name="quantity" placeholder="Quantity" required>
+        <label for="itemname">Item Name:</label>
+        <input type="text" name="itemname" required>
+        <label for="Quantity">Quantity:</label>
+        <input type="number" name="Quantity" required>
         <button type="submit">Add Item</button>
-      </form>
+    </form>
 </body>
 </html>

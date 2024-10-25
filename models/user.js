@@ -6,13 +6,13 @@ const foodSchema = new mongoose.Schema({
       type: String,
       required: true,
   },
-  Quantity: {
-    type: String,
+  quantity: {
+    type: Number,
     required: true
 },
 });
 
-const userSchema = mongoose.Schema({
+const userSchema = new mongoose.Schema({
   username: {
     type: String,
     required: true,
@@ -21,7 +21,11 @@ const userSchema = mongoose.Schema({
     type: String,
     required: true,
   },
-  foods: [ foodSchema ] 
+  pantry: 
+     [ foodSchema ] 
+  
+
+  
 });
 
 

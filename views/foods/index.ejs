@@ -1,31 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>My Pantry</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Pantry</title>
 </head>
 <body>
-  <%- include('../partials/_navbar.ejs') %>
-  <h1>Your Foods</h1>
-  <a href="/users/<%= user._id %>/foods/new">Add an Food</a>
-  <ul>
-    <% if (foods && foods.length) { %>
-      <% foods.forEach((food) => { %>
-      <li>
-        <a href="/users/<%= user._id %>/foods/<%= food._id %>">
-          <p><%= food.itemName %></p>
-          </a>
-    <li>
-      <a href="/users/<%= user._id %>/foods/<%= food._id%>">
-        <p>
-          
-        </p>
-     
-    </li>
-    <% }); %>
-    <% } else { %> 
-    <li>No foods available.</li>
-  <% } %> 
-  </ul>
+    <%- include('../partials/_navbar.ejs') %> <!-- Adjust the path if needed -->
+    <h1>Welcome to my Pantry</h1>
+    <a href="/users/<%= user._id %>/foods/new">Add New Item</a>
+    
+    <% if (foods.length > 0) { %>
+        <ul>
+            <% foods.forEach(food => { %>
+                <li><%= food.itemname %> - <%= food.quantity %></li> <!-- Ensure correct casing for quantity -->
+            <% }); %>
+        </ul>
+    <% } else { %>
+        <p>There are no items in this pantry.</p>
+    <% } %>
+</body>
 </html>
